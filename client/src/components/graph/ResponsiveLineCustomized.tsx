@@ -18,7 +18,7 @@ const ResponsiveLineCustomized = ({ data, legend }: Props) => (
     }}
     yFormat=" >-.2f"
     axisTop={null}
-    axisRight={{}}
+    axisRight={null}
     axisBottom={{
       tickSize: 5,
       tickPadding: 5,
