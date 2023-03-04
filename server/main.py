@@ -1,25 +1,25 @@
 import asyncio
 import websockets
-import serial
+from queue import Queue
+import handleSerialData
+import telemetryServer
+import excelWrite
 
-ser = serial.Serial("COM3", 9600)
+data_provider = handleSerialData.HandleSerialData("COM3", 9600)
+#web_socket = socketServer.SocketServer(data_provider)
+excel_write = excelWrite.ExcelWrite(data_provider)
 
-async def receive_data(websocket, path):
+
+try:
+    True
+    #web_socket.start()
     while True:
-        # Read data from the Arduino
-        data = read_data_from_arduino()
-
-        # Send the data to the WebSocket client
-        await websocket.send(data)
-
-# Define a function to read data from the Arduino
-def read_data_from_arduino():
-    # Implement your code to read data from the Arduino here
-    line = ser.readline()
-    return line
-
-# Start the WebSocket server
-start_server = websockets.serve(receive_data, "localhost", 8765)
-
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+        test = input()
+        print(test)
+        
+except KeyboardInterrupt:
+    # Gracefully stop the WebSocket server and terminate the Python process
+    data_provider.kill()
+    excel_write.save()
+    print("Interrupted")
+    exit()

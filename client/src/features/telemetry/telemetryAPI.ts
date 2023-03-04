@@ -17,7 +17,7 @@ export function useStartTelemetry() {
       dispatch(packetRecieved(data));
     }, [dispatch]);
     useEffect(() => {
-      const interval = setInterval(fetchTelemetry, 30);
+      const interval = setInterval(fetchTelemetry, 100);
       return () => {
         clearInterval(interval);
       };

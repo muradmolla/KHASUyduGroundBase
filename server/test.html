@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+  <h1>Websockets serial console</h1>
+  <script>
+var socket = new WebSocket("ws://localhost:8765/");
+
+socket.onmessage = function(event) {
+    // Handle the incoming data here
+    console.log(event.data);
+};
+socket.onopen = function(event) {
+    console.log(event);
+}
+  </script>
+  </body>
+</html>
