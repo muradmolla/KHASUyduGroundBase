@@ -9,7 +9,7 @@ class SocketServer:
     async def send_data(self, websocket, path):
         data_queue = Queue(maxsize=0)
         self.data_provider.bind_queue(data_queue)
-        while True:
+        while not self.killed:
 
             if (not data_queue.empty()):
                 # Get the latest data from the queue
@@ -20,10 +20,13 @@ class SocketServer:
 
             else:
                 await asyncio.sleep(0)
+        self.thread.join()
 
     # Start the WebSocket server
     async def start_server(self):
         async with websockets.serve(self.send_data, "localhost", 8765):
             await asyncio.Future()  # run forever
+
     def start(self):
         asyncio.run(self.start_server())
+

@@ -7,6 +7,7 @@ class HandleSerialData:
         self.port = port
         self.baud = baud
         self.ser = serial.Serial(port, baud)
+        print("Connection established with device in port", port, "with", baud, "baud rate.")
         self.data = []
         self.packet_loss = 0
         self.killed = False
@@ -53,6 +54,7 @@ class SerialData:
         self._raw_data = data
         self.lost_packet = False
         self.interpret()
+
     def interpret(self):
         try:
             data = self._raw_data.decode("utf-8").strip().split(',')
