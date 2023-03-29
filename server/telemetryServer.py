@@ -9,7 +9,7 @@ class SocketServer:
     async def send_data(self, websocket, path):
         data_queue = Queue(maxsize=0)
         self.data_provider.bind_queue(data_queue)
-        while not self.killed:
+        while True:
 
             if (not data_queue.empty()):
                 # Get the latest data from the queue

@@ -14,7 +14,6 @@ try:
     web_socket.start()
         
 except KeyboardInterrupt:
-    # Gracefully stop the WebSocket server and terminate the Python process
     data_provider.kill()
     excel_write.save()
     print("Server Terminated by the user.")

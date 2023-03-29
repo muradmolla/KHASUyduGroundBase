@@ -1,7 +1,21 @@
 export type telemetry = {
     packet: number,
-    //status: number,
-    //time: number,
+    status: number,
+    error_code: number,
+    time: number,
+    a_pressure: number,
+    t_pressure: number,
     a_height: number,
     t_height: number,
+    height_difference: number,
+    descend_speed: number,
+    temperature: number,
+    voltage: number,
+    gps_latitude: number,
+    gps_longitude: number,
+    gps_height: number,
+    pitch: number,
+    roll: number,
+    yaw: number,
+
 }

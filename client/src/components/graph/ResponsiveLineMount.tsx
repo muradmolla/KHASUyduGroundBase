@@ -9,12 +9,35 @@ type Props = {
 
 
 const ResponsiveLineMount = ({ datumType }: Props) => {
-  const graphData: Serie[] = useGraphData("height");
+  const graphData: Serie[] = useGraphData(datumType);
+  let legendLabel = '';
+    switch (datumType) {
+      case "height":
+        legendLabel = "yükseklik (m)";
+        break;
+      case "velocity":
+        legendLabel = "İniş Hızı (m/s)";
+        break;
+      case "pressure":
+        legendLabel = "Basınç (Pa)";
+        break;
+      case "heightDiff":
+        legendLabel = "İrtifa Farkı (m)";
+        break;
+      case "voltage":
+        legendLabel = "Pil Gerilimi (V)";
+        break;
+      case "temperature":
+        legendLabel = "Sıcaklık (C°)";
+        break;
+      default:
+        legendLabel = '';
+    }
   return (
     <div style={{height: 350}}>
       <ResponsiveLineCustomized
         data={graphData}
-        legend="yükseklik (m)"
+        legend={legendLabel}
       />
       </div>
     );

@@ -4,12 +4,14 @@ import { RootState } from "../../app/store";
 
 export interface TelemetryState {
     connected: boolean,
-    data: telemetry[]
+    data: telemetry[],
+    last_packet: number
 } 
 
 const initialState: TelemetryState = {
     connected: true,
     data: [],
+    last_packet: 0
 };
 
 export const telemetrySlice = createSlice({
@@ -17,6 +19,7 @@ export const telemetrySlice = createSlice({
     initialState,
     reducers: {
         packetRecieved: (state, action: PayloadAction<telemetry>) => {
+            if (state.last_packet !== action.payload.packet)
             state.data.push(action.payload);
         }
     }
